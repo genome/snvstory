@@ -25,7 +25,3 @@ RUN rm requirements.txt
 
 # copy source code
 COPY ./igm_churchill_ancestry ./igm_churchill_ancestry
-
-ENTRYPOINT ["python3", "-m", "igm_churchill_ancestry"]
-
-ENV TMP_DIR=/data
