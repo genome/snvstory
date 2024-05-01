@@ -84,7 +84,7 @@ def vcf_to_json(parsed_vcf, attribute_dir, locus_converter_json_path):
                 gt_sum += genotype_int
             except Exception as e:
                 print(f"Unknown genotype: {genotype}. {e}")
-                return
+                continue
             variant_container[locus_id] = genotype_int
     if gt_sum > 0:
         return variant_container
