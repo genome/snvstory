@@ -157,3 +157,4 @@ def plot_parser(df, var, outdir, ofn):
         plot_predictions_separate(data, var, sample_name, outdir)
     normed_df = write_out_normed_df(data_list, t_list)
     normed_df.to_csv(os.path.join(outdir, ofn))
+    normed_df.to_pickle(os.path.join(outdir, ofn+'.pickle'))
