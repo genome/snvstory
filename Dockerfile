@@ -17,11 +17,17 @@ RUN conda install -y \
       conda clean --all
 
 # install the application requirements to cache
+WORKDIR /tmp/
+RUN git clone https://github.com/nch-igm/snvstory.git # No tags using latest afd6a54
+WORKDIR /tmp/snvstory/
+COPY *-patch ./
+RUN for p in *-patch; do git apply ${p}; done
+RUN pip install -r requirements.txt
 ARG SERVICE_NAME=Ancestry
 WORKDIR /opt/${SERVICE_NAME}
-COPY ./requirements.txt ./
-RUN pip install -r requirements.txt
-RUN rm requirements.txt
+RUN cp -r /tmp/snvstory/igm_churchill_ancestry ./
+RUN chmod -R ugo+rw .
 
-# copy source code
-COPY ./igm_churchill_ancestry ./igm_churchill_ancestry
+RUN rm -rf /tmp/snvstory/
+ENV PYTHONPATH=/opt/${SERVICE_NAME}
+ENV PATH="/opt/conda/bin:$PATH"
