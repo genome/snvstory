@@ -18,7 +18,8 @@ RUN conda install -y \
 
 # install the application requirements to cache
 WORKDIR /tmp/
-RUN git clone -b qc_patches https://github.com/genome/snvstory.git 
+# download at tag v1.1-buster
+RUN git clone --branch v1.1-buster https://github.com/genome/snvstory.git 
 WORKDIR /tmp/snvstory/
 RUN pip install -r requirements.txt
 ARG SERVICE_NAME=Ancestry
