@@ -18,10 +18,8 @@ RUN conda install -y \
 
 # install the application requirements to cache
 WORKDIR /tmp/
-RUN git clone https://github.com/nch-igm/snvstory.git # No tags using latest afd6a54
+RUN git clone -b qc_patches https://github.com/genome/snvstory.git 
 WORKDIR /tmp/snvstory/
-COPY *-patch ./
-RUN for p in *-patch; do git apply ${p}; done
 RUN pip install -r requirements.txt
 ARG SERVICE_NAME=Ancestry
 WORKDIR /opt/${SERVICE_NAME}
