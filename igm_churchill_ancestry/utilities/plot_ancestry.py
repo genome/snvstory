@@ -148,6 +148,7 @@ def plot_predictions_separate(data, var, sample_name: str, outdir: str):
 def plot_parser(df, var, outdir, ofn):
     data_list = []
     t_list = []
+    df.to_pickle(os.path.join(outdir, ofn + '.full.pickle'))
     for row in df.iterrows():
         sample_name = row[0]
         data = row[1]
